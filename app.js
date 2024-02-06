@@ -3,6 +3,10 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+const apiRoutes = require('./api/controller/apiController'); // Path to your apiController.js file
+
+
+
 // Use the API routes
 app.use(bodyParser.urlencoded({extended:false}));
 //parse request data content type application/json
@@ -12,6 +16,8 @@ app.get('/test', (req, res)=> {
     res.send('Hello World');
 });
 
+
+app.use('/api',apiRoutes);
 
 app.use((req, res, next)=> {
     const error = new Error('Not Found');
